@@ -5,6 +5,7 @@ void enter(string input[], int &n);
 void print(string output[], int n);
 void add(string input[], int &n);
 void remove(string input[], int &n);
+void rename(string input[], int n);
 int main(){
     string list[20];
     int n;
@@ -12,6 +13,7 @@ int main(){
     print(list, n);
     add(list, n);
     remove(list, n);
+    rename(list, n);
     return 0;
 }
 void enter(string input[], int &n){
@@ -46,5 +48,13 @@ void remove(string input[], int &n){
         input[i]=input[i+1];
     }
     n--;
+    print(input, n);
+}
+void rename(string input[], int n){
+    for(int i=0; i<n;i++){
+        if(input[i]=="c#"){
+            input[i] = "c-sharp";
+        }
+    }
     print(input, n);
 }
