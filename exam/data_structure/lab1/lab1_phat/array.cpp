@@ -4,12 +4,14 @@ using namespace std;
 void enter(string input[], int &n);
 void print(string output[], int n);
 void add(string input[], int &n);
+void remove(string input[], int &n);
 int main(){
     string list[20];
     int n;
     enter(list, n);
     print(list, n);
     add(list, n);
+    remove(list, n);
     return 0;
 }
 void enter(string input[], int &n){
@@ -34,5 +36,15 @@ void add(string input[], int &n){
     getline(cin, name);
     input[n]= name;
     n++;
+    print(input, n);
+}
+void remove(string input[], int &n){
+    int pos;
+    cout<<"Enter position u want to remove: ";
+    cin>>pos;
+    for(int i=pos; i<n-1;i++){
+        input[i]=input[i+1];
+    }
+    n--;
     print(input, n);
 }
