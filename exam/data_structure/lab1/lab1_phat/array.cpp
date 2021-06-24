@@ -1,14 +1,38 @@
 #include<iostream>
 #include<string>
 using namespace std;
-void print(string output[]);
+void enter(string input[], int &n);
+void print(string output[], int n);
+void add(string input[], int &n);
 int main(){
-    string list[10]={"c","c_plus","c#","java","python"};
-    print(list);
+    string list[20];
+    int n;
+    enter(list, n);
+    print(list, n);
+    add(list, n);
     return 0;
 }
-void print(string output[]){
-    for(int i=0;i<10;i++){
+void enter(string input[], int &n){
+    cout<<"Enter n: ";
+    cin>>n;
+    for(int i=0; i<n;i++){
+        cout<<"Enter language "<<i+1<<endl;
+        fflush(stdin);
+        getline(cin, input[i]);
+    }
+}
+void print(string output[], int n){
+    for(int i=0;i<n;i++){
         cout<<output[i]<<" ";
     }
+    cout<<endl;
+}
+void add(string input[], int &n){
+    string name;
+    cout<<"Enter language: ";
+    fflush(stdin);
+    getline(cin, name);
+    input[n]= name;
+    n++;
+    print(input, n);
 }
