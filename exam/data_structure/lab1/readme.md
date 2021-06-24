@@ -28,5 +28,3 @@ Một người gồm:
 a.	Thêm 1 người vào vào trong hàng đợi
 b.	Xóa 1 người ra khỏi hàng đợi
 c.	Tìm kiếm 1 người trong hàng đợi. Nếu có trả về true, sai trả về false
-
-
