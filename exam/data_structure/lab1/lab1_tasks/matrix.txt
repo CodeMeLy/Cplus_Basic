@@ -1,0 +1,8 @@
+2.	Ma trận
+Cho một ma trận vuông, cấp n. Viết chương trình
+a.	Nhập xuất ma trận
+b.	Tìm hàng có tổng lớn nhất
+c.	Tìm giá trị lớn nhất của từng cột
+d.	Tìm tổng đường chéo chính
+e.	Tìm tích đường chéo phụ
+tài liệu + trao đổi bên discord
