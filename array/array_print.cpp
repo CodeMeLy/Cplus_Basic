@@ -5,7 +5,7 @@ void print(string languages[], int size);
 int main(){
     // xuất mảng string
     int size = 5;
-    string languages[] = { "C++", "java","C#","PHP","js"};// array initialization
+    string languages[] = {"C++", "java","C#","PHP","js"};// array initialization
     print(languages,size);
     return 0;
 }
