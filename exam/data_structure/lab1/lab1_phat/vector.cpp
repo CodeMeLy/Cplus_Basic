@@ -11,11 +11,11 @@ int main(){
     print(list);
 }
 void enter(vector<string> &arr){
+    string a;
     int n;
     cout<<"Enter n: ";
     cin>>n;
     while(n--){
-        string a;
         cout<<"Enter animal "<<n<<endl;
         fflush(stdin);
         getline(cin, a);
