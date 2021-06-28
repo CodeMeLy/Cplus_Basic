@@ -26,20 +26,22 @@ void enter(vector<string> &arr){
 }
 void add(vector<string> &arr){
     string name;
-    bool check = true;
-    cout<<"Enter animal: ";
-    fflush(stdin);
-    getline(cin, name);
-    for(int i=0; i<arr.size(); i++){
-        if(arr[i] == name){
-            check = false;
+    bool check;
+    do{
+        check = true;
+        cout<<"Enter animal: ";
+        fflush(stdin);
+        getline(cin, name);
+        for(int i=0; i<arr.size(); i++){
+            if(arr[i] == name){
+                check = false;
+            }
         }
-    }
-    if(check){
-        arr.push_back(name);
-    }else{
-        cout<<"-->Bị trùng ròi, hong thêm vô đâu :))"<<endl;
-    }
+        if(!check){
+            cout<<"-->Bị trùng ròi, hong thêm vô đâu :))"<<endl;
+        }
+    }while(!check);
+    arr.push_back(name);
 }
 void print(vector<string> arr){
     vector<string>::iterator it;
