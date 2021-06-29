@@ -25,7 +25,7 @@ void enter(queue<string> &arr){
 }
 void add(queue<string> &arr){
     string name;
-    cout<<"Enter disc: ";
+    cout<<"Enter info: ";
     fflush(stdin);
     getline(cin, name);
     arr.push(name);
