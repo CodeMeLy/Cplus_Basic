@@ -10,6 +10,10 @@ int main(){
     queue<string> list;
     enter(list);
     print(list);
+    add(list);
+    print(list);
+    remove(list);
+    print(list);
 }
 void enter(queue<string> &arr){
     string name;
@@ -38,4 +42,5 @@ void print(queue<string> arr){
         cout<<arr.front()<<" ";
         arr.pop();
     }
+    cout<<endl;
 }
