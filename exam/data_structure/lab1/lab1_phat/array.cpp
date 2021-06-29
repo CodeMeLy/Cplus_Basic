@@ -6,7 +6,7 @@ void print(string output[], int n);
 void add(string input[], int &n);
 void remove(string input[], int &n);
 void rename(string input[], int n);
-void findJava(string input[], int n);
+void findLanguage(string input[], int n);
 int main(){
     string list[20];
     int n;
@@ -15,7 +15,7 @@ int main(){
     add(list, n);
     remove(list, n);
     rename(list, n);
-    findJava(list, n);
+    findLanguage(list, n);
     return 0;
 }
 void enter(string input[], int &n){
@@ -60,16 +60,20 @@ void rename(string input[], int n){
     }
     print(input, n);
 }
-void findJava(string input[], int n){
+void findLanguage(string input[], int n){
+    string name;
     int temp = 0;
+    cout<<"Enter language u want to find: ";
+    fflush(stdin);
+    getline(cin, name);
     for(int i=0; i<n;i++){
-        if(input[i]=="java"){
+        if(input[i]==name){
             temp++;
         }
     }
     if(temp==0){
-        cout<<"Dont have java in list";
+        cout<<"Dont have "<<name<<" in list :<";
     }else{
-        cout<<"Yes, we have "<<temp<<" java in list";
+        cout<<"Yes, we have "<<temp<<" "<<name<< " in list :>";
     }
 }
