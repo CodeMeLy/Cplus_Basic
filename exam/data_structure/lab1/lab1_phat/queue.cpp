@@ -5,6 +5,7 @@ using namespace std;
 void enter(queue<string> &arr);
 void add(queue<string> &arr);
 void remove(queue<string> &arr);
+void find(queue<string> arr);
 void print(queue<string> arr);
 int main(){
     queue<string> list;
@@ -14,6 +15,7 @@ int main(){
     print(list);
     remove(list);
     print(list);
+    find(list);
 }
 void enter(queue<string> &arr){
     string name;
@@ -36,6 +38,28 @@ void add(queue<string> &arr){
 }
 void remove(queue<string> &arr){
     arr.pop();
+}
+void find(queue<string> arr){
+    vector<string> list;
+    string name;
+    bool check = false;
+    while(!arr.empty()){
+        list.push_back(arr.front());
+        arr.pop();
+    }
+    cout<<"Enter disc u want to find: ";
+    fflush(stdin);
+    getline(cin, name);
+    for(int i=0; i<list.size(); i++){
+        if(list[i] == name){
+            check = true;
+        }
+    }
+    if(check){
+        cout<<"YES"<<endl;
+    }else{
+        cout<<"NO"<<endl;
+    }
 }
 void print(queue<string> arr){
     while(!arr.empty()){
