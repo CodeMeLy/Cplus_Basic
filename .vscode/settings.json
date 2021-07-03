@@ -72,6 +72,32 @@
         "cstdarg": "cpp",
         "cwctype": "cpp",
         "memory_resource": "cpp",
-        "optional": "cpp"
-    }
+        "optional": "cpp",
+        "typeindex": "cpp"
+    },
+    "editor.tokenColorCustomizations": {
+        "textMateRules": [
+            {
+                "scope": "googletest.failed",
+                "settings": {
+                    "foreground": "#f00"
+                }
+            },
+            {
+                "scope": "googletest.passed",
+                "settings": {
+                    "foreground": "#0f0"
+                }
+            },
+            {
+                "scope": "googletest.run",
+                "settings": {
+                    "foreground": "#0f0"
+                }
+            }
+        ]
+    },
+    "gtest-adapter.debugConfig": [
+        "g++.exe build and debug active file"
+    ]
 }
