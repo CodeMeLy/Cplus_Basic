@@ -1,24 +1,18 @@
-#include <bits/stdc++.h>
+#include<bits/stdc++.h>
 using namespace std;
 int main(){
-    int T;
-    cin>>T;
-    vector<int> list;
-    while(T--){
-        int n;
+    int t;
+    cin>>t;
+    while(t--){
+        int n,s=0;
         cin>>n;
-        int a[100];
-        for(int i = 0; i < n; i++){
-            cin>>a[i];
+        int a[n];
+        int temp=n;
+        while(n--){
+            cin>>a[temp-n];
+            s+=a[temp-n];
         }
-        int temp = 0;
-        for(int i = 0; i < n; i++){
-            temp += a[i];
-        }
-        list.push_back(temp);
-    }
-    for(auto i : list){
-        cout<<i<<" ";
+        cout<<s<<endl;
     }
     return 0;
 }
