@@ -73,7 +73,8 @@
         "cwctype": "cpp",
         "memory_resource": "cpp",
         "optional": "cpp",
-        "typeindex": "cpp"
+        "typeindex": "cpp",
+        "forward_list": "cpp"
     },
     "editor.tokenColorCustomizations": {
         "textMateRules": [
