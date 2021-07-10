@@ -3,7 +3,6 @@ mã sản xuất là 084. Cho 1 dãy mã dạng số nguyên không quá 18 ch�
 đoạn mã 084 ra khỏi mã ban đầu*/
 #include <iostream>
 #include <string>
-#include <sstream>
 using namespace std;
 int main(){
     int T;
@@ -11,9 +10,7 @@ int main(){
     while(T--){
         long long num;
         cin>>num;
-        ostringstream convert;
-        convert << num;
-        string a = convert.str();//chuyển thành xâu
+        string a = to_string(num);//chuyển thành xâu
         for(int i=0; i< a.size(); i++){
             if(a[i]=='0' && a[i+1]=='8' && a[i+2]=='4'){
                 a.erase(a.begin()+i, a.begin()+i+3);
