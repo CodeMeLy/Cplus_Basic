@@ -74,7 +74,8 @@
         "memory_resource": "cpp",
         "optional": "cpp",
         "typeindex": "cpp",
-        "forward_list": "cpp"
+        "forward_list": "cpp",
+        "numeric": "cpp"
     },
     "editor.tokenColorCustomizations": {
         "textMateRules": [
