@@ -35,8 +35,8 @@ void sort(int a[], int n){
            }
        }
        swap(a[i],a[min_index]);
-       cout<<"min:"<<a[min_index]<<endl;
-       print(a,n);
+    //    cout<<"min:"<<a[min_index]<<endl;
+    //    print(a,n);
    }
 }
 void print(int a[], int n){
