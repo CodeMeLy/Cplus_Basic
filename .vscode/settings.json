@@ -74,6 +74,7 @@
         "memory_resource": "cpp",
         "optional": "cpp",
         "typeindex": "cpp",
+<<<<<<< HEAD
         "bitset": "cpp",
         "cassert": "cpp",
         "cerrno": "cpp",
@@ -98,6 +99,10 @@
         "scoped_allocator": "cpp",
         "shared_mutex": "cpp",
         "valarray": "cpp"
+=======
+        "forward_list": "cpp",
+        "numeric": "cpp"
+>>>>>>> f95fcb3b2795d2c013a87c5068c0e228c29a6d53
     },
     "editor.tokenColorCustomizations": {
         "textMateRules": [
