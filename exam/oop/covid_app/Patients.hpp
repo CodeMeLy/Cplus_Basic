@@ -45,6 +45,15 @@ class Patients{
                 i.display();
             }
         }
+        void F0_patient(){
+            cout<<"-->F0 patient:"<<endl;
+            for(auto i =list.begin(); i != list.end(); i++){
+                if(i->getInfection() == "NO"){
+                    i->display();
+                    cout<<"------"<<endl;
+                }
+            }
+        }
         //  0 1 2 3 4 5 6 (list)
         //  0 0 0 0 0 0 0 (f)
         //  0 1 0 1 1 2 0
