@@ -1,4 +1,0 @@
-4.	Đĩa nhạc
-a.	Thêm 1 đĩa nhạc lên trên đống đĩa
-b.	Xóa 1 đĩa nhạc ra khỏi đống đĩa
-c.	Tìm kiếm đĩa nhạc từ đống đĩa

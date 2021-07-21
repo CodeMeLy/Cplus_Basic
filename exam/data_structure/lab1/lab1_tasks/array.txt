@@ -1,8 +1,0 @@
-1.	Mảng
-Cho một danh sách ngôn ngữ lập trình gồm các giá trị cho trước là tên của các ngôn ngữ lập trình.
-a.	In các ngôn ngữ lập trình
-b.	Thêm 1 ngôn ngữ lập trình vào danh sách
-c.	Xóa 1 ngôn ngữ lập trình ra khỏi danh sách
-d.	Sửa tên ngôn ngữ lập trình “c#” thành “c-sharp”
-e.	Tìm kiếm ngôn ngữ lập trình có tên “java”
-tài liệu + trao đổi bên discord

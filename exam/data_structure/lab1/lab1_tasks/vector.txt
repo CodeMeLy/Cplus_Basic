@@ -1,4 +1,0 @@
-3.	Vector
-Cho một danh sách gồm tên của các loài động vật
-a.	Nhập vào một loài động vật vào danh sách. Không nhập vào nếu loài vật đó đã tồn tại trước đó.
-b.	Xuất ra danh sách các loài động vật sử dụng iterator
