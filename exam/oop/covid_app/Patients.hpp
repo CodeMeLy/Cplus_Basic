@@ -61,7 +61,7 @@ class Patients{
             }
         }
         void quarantine(){
-            cout<<"-->Patients have the most quarantine time:"<<endl;
+            cout<<endl<<"-->Patients have the most quarantine time:"<<endl;
             Patient max = list[0];
             for(auto i=list.begin()+1; i != list.end(); i++){
                 if(i->getDay()>max.getDay()){
@@ -77,7 +77,7 @@ class Patients{
         }
         void quarantine_day(){
             cout<<"-->Decreasing quarantine days: "<<endl;
-            stable_sort(list.begin(), list.end(), Compare());
+            sort(list.begin(), list.end(), Compare());
             for(auto item : list){
                 item.display();
                 cout<<"------"<<endl;
