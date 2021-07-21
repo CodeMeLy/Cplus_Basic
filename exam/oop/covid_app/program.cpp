@@ -27,6 +27,7 @@ int main(){
     patients.display();
     patients.F0_patient();
     patients.quarantine();
+    patients.quarantine_day();
     cout<<"F:";
     patients.F();
     cout<<endl;

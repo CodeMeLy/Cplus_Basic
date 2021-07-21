@@ -1,6 +1,12 @@
 #include "patient.hpp"
 #include <bits/stdc++.h>
 using namespace std;
+class Compare{
+    public:
+        bool operator () (Patient first, Patient second){
+            return first.getDay()>second.getDay();
+        }
+};
 class Patients{
     private:
         vector<Patient> list;
@@ -67,6 +73,14 @@ class Patients{
                     i->display();
                     cout<<"------"<<endl;
                 }
+            }
+        }
+        void quarantine_day(){
+            cout<<"-->Decreasing quarantine days: "<<endl;
+            stable_sort(list.begin(), list.end(), Compare());
+            for(auto item : list){
+                item.display();
+                cout<<"------"<<endl;
             }
         }
         //  0 1 2 3 4 5 6 (list)
