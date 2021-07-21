@@ -1,10 +1,7 @@
 /*Sắp xếp danh sách mặt hàng
 https://cdn.discordapp.com/attachments/862633303210459176/862633962828333067/unknown.png
 https://cdn.discordapp.com/attachments/811609122805907466/862904552898691072/210509963_308930190979581_8164554273404551471_n.png*/
-#include<iostream>
-#include<string>
-#include<vector>
-#include<ctime>
+#include <bits/stdc++.h>
 using namespace std;
 class Mathang{
     private:
@@ -50,6 +47,12 @@ class Mathang{
                 cout<<maMatHang<<" "<<tenMatHang<<" "<<tenNhomHang<<" "<<loiNhuan;
             }
 };
+class compare{
+    public:
+        bool operator () (Mathang first, Mathang second){
+            return first.getLoiNhuan()<second.getLoiNhuan();
+        }
+};
 class MATHANG{
     private:
             vector<Mathang> list;
@@ -61,13 +64,7 @@ class MATHANG{
                 this->list.push_back(mathang);
             }
             void sort(){
-                for(int i=0;i<list.size()-1;i++){
-                    for(int j=i+1; j<list.size();j++){
-                        if(list[i].getLoiNhuan()<list[j].getLoiNhuan()){
-                            swap(list[i],list[j]);
-                        }
-                    }
-                }
+                std::sort(list.begin(),list.end(), compare());
             }
             void display(){
                 for(auto i : list){
@@ -83,14 +80,10 @@ int main(){
     cin>>n;
     for(int i=1;i<=n;i++){
         cin>>mathang;
-        clock_t startTime = clock();
         mathang.setMaMatHang(i);
         mathang.setLoiNhuan();
         arr.add(mathang);
-        cout << double( clock() - startTime ) / (double)CLOCKS_PER_SEC<< " seconds." << endl;
     }
-    clock_t startTime = clock();
     arr.sort();
     arr.display();
-    cout << double( clock() - startTime ) / (double)CLOCKS_PER_SEC<< " seconds." << endl;
 }
