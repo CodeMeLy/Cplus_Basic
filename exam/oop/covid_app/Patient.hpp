@@ -25,6 +25,9 @@ class Patient{
         string getInfection(){
             return infection;
         }
+        int getDay(){
+            return day;
+        }
         friend istream& operator>>(istream &input, Patient &patient){
             do{
                 cout<<"id: ";

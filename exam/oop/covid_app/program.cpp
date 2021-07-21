@@ -26,6 +26,7 @@ int main(){
     cout<<endl<<"--->output:"<<endl;
     patients.display();
     patients.F0_patient();
+    patients.quarantine();
     cout<<"F:";
     patients.F();
     cout<<endl;
