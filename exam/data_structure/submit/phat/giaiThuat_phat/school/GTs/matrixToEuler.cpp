@@ -46,7 +46,7 @@ int main(){
                 }
             }
         }
-        cout<<endl<<"Chu trinh Euler da duoc ghi vao file output.txt."<<endl;
+        cout<<endl<<"Chu trinh Euler da duoc tim thay."<<endl;
     }else{
         cout<<"Khong tim duoc chu trinh Euler."<<endl;
     }
