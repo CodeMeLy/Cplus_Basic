@@ -1,11 +1,70 @@
-#include "stack.hpp"
+// Ho ten: Nguyen Hoang Phat
+// MSSV: 6151071082
+// Ngay sinh: 12/1/2002
+// Email: 6151071082@st.utc2.edu.vn
+// Viết chương trình tính giá trị của biểu thức hậu tố.
 #include <iostream>
-#include <cmath>
-// check if a character is a number (operand)
+#include <math.h>
+using namespace std;
+
+typedef double Item;
+
+struct Node{
+	Item data;
+	Node *next;
+};
+
+struct stack{
+	Node *top;
+	long size;
+	
+	stack();
+	void traverse() const;	
+	Node* CreateNode(Item v);		
+	void push(Item v);
+	Item pop();
+	Item peek();	
+};
+stack::stack() {
+	top = NULL;
+	size = 0;
+}
+void stack::traverse() const {
+	Node *p = top;
+	while (p != NULL) {
+		cout << p->data << "\t";
+		p = p->next;
+	}
+	delete p;
+}
+Node* stack::CreateNode(Item v) {
+	Node* p = new Node;
+	p->data = v;	
+	p->next = NULL;	
+	return p; 
+}	
+void stack::push(Item v) {
+	Node* p = CreateNode(v);
+	p->next = top;
+	top = p;	
+	size++;
+}
+Item stack::pop() {	
+	Node *t = top;
+	Item data = top->data;
+	top = top->next;
+	delete t;
+	size--;	
+	return data;
+}
+Item stack::peek() {
+	return top->data;
+}
+// kiem tra la so
 bool isOperand(char ch) {
     return (ch>='0' && ch<='9');
 }
-// evaluate postfix expression
+// tinh hau to
 double evalute(string postfix) {
     stack s;
     for(int i = 0; i<postfix.size(); i++){
@@ -16,19 +75,19 @@ double evalute(string postfix) {
             double b = s.pop();
             switch (postfix[i])
             {
-                case '+': // addition
+                case '+': // cong
                           s.push(b + a);
                           break;
-                case '-': // subtraction
+                case '-': // tru
                           s.push(b - a);
                           break;
-                case '*': // multiplication
+                case '*': // nhan
                           s.push(b * a);
                           break;
-                case '/': // division
+                case '/': // chia
                           s.push(b / a);
                           break;
-                case '^': // exponent
+                case '^': // mu
                           s.push(pow(b,a));
                           break;
             }
@@ -36,7 +95,6 @@ double evalute(string postfix) {
     }
     return s.pop();
 }
-// main function
 int main() {
 	string e1 = "82/7*";	//28
 	string e2 = "623+-382/+*2^3+";	//52
