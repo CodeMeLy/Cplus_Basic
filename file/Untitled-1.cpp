@@ -21,15 +21,15 @@ class Animal{
         Animal(Animal* al);
         ~Animal();
         void setName(string name);
-        void setID(int &id);
+        void setID(int id); 
         string getName();
         int getID();
-        void EnterID();
-		void EnterName();            
+        //void EnterID();
+		//void EnterName();            
 };
 
 
-//Dv An Co 
+//Dv Ãn C? 
 typedef class Graminivore:public Animal{
 
         string food;
@@ -41,8 +41,9 @@ typedef class Graminivore:public Animal{
 }Grami;
 
 
-// Dv An Thit
+// Dv Ãn Th?t
 typedef class Hypercarnivore:public Animal{
+
         string food;
         int amount;
     public: 
@@ -51,8 +52,9 @@ typedef class Hypercarnivore:public Animal{
         
 }Hyper;
 
-// Vi Sinh Vat
+// Vi Sinh V?t
 typedef class Microorganism:public Animal{
+    
 		string food; 
         int amount;
     public: 
@@ -61,7 +63,7 @@ typedef class Microorganism:public Animal{
 }Microo;
 
 
-// Cay Tim Kiem Nhi Phan
+// Cây T?m Ki?m Nh? Phân
 struct Node{
 	Animal *data; 
 	Node* left;
@@ -83,7 +85,7 @@ struct BST{
         void PostOrder(Node* root);
         void InOrder(Node* root);
         Node* Delete(Node* &root, Animal *al1);
-        Animal* LeftMostAnimal(Node* root);
+        Node* LeftMostAnimal(Node* root);
 };
 
 //Linked List
@@ -101,7 +103,7 @@ struct SList{
 	NodeL* CreateNodeL(Animal *v);
     void addLast(Animal *v);
     NodeL *previous(NodeL *p);
-    NodeL *searchName(Animal* al);
+    NodeL *searchName(NodeL *p, string name);
     void sort();
     void removeFirst();
     void removeLast();
@@ -126,6 +128,7 @@ ostream& operator << (ostream& os,Hyper *hy){
     cout <<"\t*********************~~*********************" << endl; 
 }
 
+
 NodeL* SList::CreateNodeL(Animal *v){
 	NodeL* p = new NodeL;
     Animal *v1 = new Animal(v);
@@ -133,14 +136,12 @@ NodeL* SList::CreateNodeL(Animal *v){
 	p->next = NULL;	
 	return p; 
 }
-
 //khoi tao
 SList::SList(){
     head = NULL;
     tail = NULL;
     size =0;
 }
-
 // giai phong bo nho
 SList::~SList(){
     head = NULL;
@@ -148,7 +149,8 @@ SList::~SList(){
     size = 0;
 }
 
-// them vao cuoi
+
+// th?m v?o cu?i
 void SList::addLast(Animal *v){
     NodeL *p = CreateNodeL(v);
     if(size == 0){
@@ -162,6 +164,7 @@ void SList::addLast(Animal *v){
     size = size + 1;
 }
 
+
 // Duyet cac ptu trong danh sach
 void SList::traverse() const{
     NodeL *p = head;
@@ -173,20 +176,21 @@ void SList::traverse() const{
     delete p;   
 }
 
-// Tim kiem 
-NodeL *SList::searchName(Animal *al){
-	NodeL *p = head;
+
+// T?m ki?m 
+NodeL *SList::searchName(NodeL *p, string name){
     while(p != NULL){
-        if(p->data->getName() == al->getName())
+        if(p->data->getName() == name)
             break;
         p=p->next;
     }
     return p;
 }
 
-// Sap xep
+
+// S?p x?p
 void SList::sort(){
-    for(NodeL *p = head; p->next != NULL; p=p->next){
+    for(NodeL *p = head; p != tail; p=p->next){
         for(NodeL *q = p->next; q != NULL; q = q->next){
             if(p->data->getID() > q->data->getID()){
                 swap(p->data,q->data);
@@ -195,7 +199,8 @@ void SList::sort(){
     }
 }
 
-// tim 1 phan tu ngay truoc phan tu bat ky
+
+// t?m 1 ph?n t? ngay tr??c ph?n t? b?t k?
 NodeL* SList::previous(NodeL *p) {
 	NodeL *t = head;
 	while (t->next != p)
@@ -206,7 +211,7 @@ NodeL* SList::previous(NodeL *p) {
 
 void SList::removeFirst(){
    if(size == 0){
-   	    cout <<" No Name Has Be Found ! ";
+   	    cout <<"Khong tim thay ten can xoa";
 	}else{
 		NodeL*t = head;
 		head=head->next;
@@ -228,7 +233,7 @@ void SList::removeLast(){
 // xoa 1 ptu 
 void SList::removeName(){
     string name;
-    cout<<"Enter the animal that need to delete: ";
+    cout<<"Nhap ten dong vat can xoa:";
     fflush(stdin);
     getline(cin,name);
     NodeL *p = head;
@@ -247,21 +252,22 @@ void SList::removeName(){
                 pre->next = p->next;
                 delete p;
                 size--;
-                break; 
+                break;
             }
         }
     }
     if(p == NULL){
-        cout <<" No Name Has Be Found ! " <<endl;
+        cout <<"Khong tim thay ten dong vat can xoa"<<endl;
     }
 }
+
 
 void Grami::toStream(istream& is){
     Animal::toStream(is);
     fflush(stdin);
     cout <<"\t\tFavorite Food: ";
     is >> food;
-    cout <<"\t\tAmount: ";
+    cout <<"\t\tAmout: ";
     is >> amount; 
 }
 
@@ -282,16 +288,19 @@ Node* BST::CreateNode(Animal *al){
 	return p; 
 } 
 
-//Duyet Phan Tu Ben Trai Root > Left va Right > Root
+
+//Duy?t Ph?n T? B?n Tr?i Root > Left v? Right > Root
 int BST::LeftOf(Animal *al,Node* root){    
     return (al->getID() < root->data->getID());
 }
+
 
 int BST::RightOf(Animal *al,Node* root){    
     return (al->getID() > root->data->getID());
 }
 
-//Chen Phan Tu
+
+//Ch?n Ph?n T?
 Node* BST::Insert(Node* &root,Animal *al1){
     if ( root == NULL){
         Node* node = CreateNode(al1);
@@ -304,26 +313,29 @@ Node* BST::Insert(Node* &root,Animal *al1){
     	else if(RightOf(al1,root))
     		root->right = Insert(root->right,al1);
 	}
-        // size ++;
+        size ++;
 		return root;
 }
 
-//Tim Kiem Phan Tu
+
+//T?m Ki?m Ph?n T?
 Node* BST::SearchName(Node *root,Animal *al1){
-    if (root == NULL){
-        return NULL;
-    }
-    
-    if(root->data->getID() == al1->getID()){
+	if (root == NULL){
+		return NULL;
+	}
+	
+	if(root->data->getName() == al1->getName()){
         return root;
     }
-    else if(LeftOf(al1,root))
-        return SearchName(root->left,al1);
-    else if(RightOf(al1,root))
-        return SearchName(root->right,al1);
+	else if(LeftOf(al1,root))
+		SearchName(root->left,al1);
+	else if(RightOf(al1,root))
+		SearchName(root->right,al1);
+	return root;
 }
 
-//Duyet Phan Tu Theo Left -> Right -> Node
+
+//Duy?t Ph?n T? Theo Left -> Right -> Node
 void BST::PostOrder(Node* root){
 	if(root != NULL){
 		PostOrder(root->left);
@@ -332,21 +344,30 @@ void BST::PostOrder(Node* root){
 	}
 }
 
-//Tra Ve Phan Tu Bu Nhat Ben Trai
-Animal* BST::LeftMostAnimal(Node* root){
-    while(root->left != NULL)
-        root = root->left;
-    return root->data;
+void BST::InOrder(Node* root){
+	if(root != NULL){
+		InOrder(root->left);
+		InOrder(root->right);
+		cout << root->data;
+	}
 }
 
-//Xoa Phan Tu
+//Tr? V? Ph?n T? B? Nh?t B?n Trai
+Node* BST::LeftMostAnimal(Node* root){
+    while(root->left != NULL)
+        root = root->left;
+    return root;
+}
+
+
+//X?a Ph?n T?
 Node* BST::Delete(Node* &root, Animal *al1){
     if (root == NULL)
         return root;
     if (LeftOf(al1,root))
-        return root->left = Delete(root->left,al1);
+        root->left = Delete(root->left,al1);
     else if (RightOf(al1,root))
-        return root->right = Delete(root->right,al1);
+        root->right = Delete(root->right,al1);
     else
     {
         if (root->left == NULL)
@@ -355,35 +376,38 @@ Node* BST::Delete(Node* &root, Animal *al1){
             delete root;
             return newRoot;
         }
-        if (root->right == NULL)
+        if (root->left == NULL)
         {
             Node* newRoot = root->left;
             delete root;
             return newRoot;
         }
-        root->data = LeftMostAnimal(root->right);
-        root->right = Delete(root->right,root->data);
+        root = LeftMostAnimal(root->right);
+        root->right = Delete(root->right,al1);
     }
-    // size --;
+    size --;
     return root;
-} 
+}
+
 
 istream& operator >> (istream& is,Animal *al){
     al->toStream(is);
     return is;
 }
 
+
 ostream& operator << (ostream& os,Animal *al){
     os << "\t*********************--*********************\n";
-    os << "\t\t\tName: " << al->name << endl;
-    os << "\t\tHeight: " << al->height << " kg" << "|| Weight: " << al->weight << " cm" <<endl;
+    os << "\t\tName: " << al->name << endl;
+    os << "\tHeight: " << al->height << " kg" << "|| Weight: " << al->weight << " cm" <<endl;
     os << "\t\tID: " << al->id<<endl;
     return os;
 }
 
+
 void Animal::toStream(istream& is){
     fflush(stdin);
-    cout <<"\n\t\tName Of The Animal: ";
+    cout <<"\t\tName Of The Animal: ";
     getline  (is,name);
     cout <<"\t\tHeight: ";
     is >> height;
@@ -397,6 +421,7 @@ void Animal::toStream(istream& is){
     }   while(id < 1 || id > 299);  
 }
 
+
 Animal Animal::operator = (Animal* al){
 	this->name = al->name;
 	this->height = al->height;
@@ -404,13 +429,15 @@ Animal Animal::operator = (Animal* al){
 	this->id = al->id; 
 }
 
-//Khoi Tao Ham
+
+//Kh?i T?o H?m
 Animal::Animal(){
     this->name = "None";
 	this->height = 0;
 	this->weight = 0;
 	this->id = 0;
 }
+
 
 Animal::Animal(string name,float height, float weight, int id){
     this->name = name;
@@ -419,6 +446,7 @@ Animal::Animal(string name,float height, float weight, int id){
     this->id =  0; 
 }
 
+
 Animal::Animal(Animal* al){
     this->name = al->name;
 	this->height = al->height;
@@ -426,25 +454,43 @@ Animal::Animal(Animal* al){
     this->id =  al->id; 
 }
 
+
 Animal::~Animal(){
 }
 
-//Lay Du Lieu
+//L?y D? Li?u
 string Animal::getName(){
-	return name; 
+    return name; 
 }
+
 
 int Animal::getID(){
 	return id;
 }
 
 //Produce Key 
-void Animal::setName(string name){
-    this->name = name;
+/*void Animal::EnterName(){
+    cout << "Enter Key Name: ";
+    cin >> name; 
 }
 
-void Animal::setID(int &id){
-    this->id = id;
+void Animal::EnterID(){
+	cout << "Enter Id Key: ";
+    cin >> id;
+	do{
+		if(){ 
+        	cout << "Enter Id Again: ";
+        	cin >> id; 
+		}
+	}while(id < 1 || id > 299);
+}*/
+
+void Animal::setID(int id){
+	this->id = id;	
+}
+
+void Animal::setName(string name){
+    this->name = name;
 }
 
 void Microorganism::toStream(istream& is){
@@ -464,41 +510,46 @@ ostream& operator << (ostream& os,Microo *mi){
     cout <<"\t*********************~~*********************" << endl; 
 }
 
-void BST::InOrder(Node* root){
+
+
+/*void BST::InOrder(Node* root){
 	if(root != NULL){
+		InOrder(root->right);
 		InOrder(root->left);
 		cout << root->data;
-		InOrder(root->right);
 	}
-}
+}*/
 
-void MENU(){
-	Animal* al;
-    long allSize[2] = {0};
+
+
+
+
+
+BST MENU(Node* , Animal *al){
+    long allSize[5];
     char k, c;
 	do{
-		cout << "\t-------------------------------------------------------------------" << endl;
-        cout << "\t|                             +|MENU|+                            |" << endl;
-        cout << "\t-------------------------------------------------------------------" <<endl;
-    	cout << "\t+       MENU BUILDING PROGRAM WORKING WITH CLASS OF ANIMALS       +\n" << endl;
-        cout << "\t+                CHOOSE THE FOLLOWING FUNCTIONS:                  +\n" << endl;
-        cout << "\t+            1. TO WORK WITH THE CLASS OF GRAMINIVORE             +\n" << endl;
-        cout << "\t+            2. TO WORK WITH THE CLASS OF HYPERCARNIVORE          +\n" << endl;
-        cout << "\t+            3. TO WORK WITH THE CLASS OF MICROORGANISM           +\n" << endl;
-        cout << "\t+            4. TO WORK WITH THE LINKED LIST                      +\n" << endl;
-        cout << "\t+            5. TO QUANTITY STATISTICS                            +\n" << endl;
-        cout << "\t+                          -ESC . EXIT-                           +\n" << endl;
-        cout << "\t-------------------------------------------------------------------" <<endl;
+        cout << "                                  MENU                                           " << endl;
+        cout << "---------------------------------------------------------------------------------" <<endl;
+        cout << "+           MENU BUILDING PROGRAM WORKING WITH CLASS OF ANIMALS                +\n" << endl;
+        cout << "+                      CHOOSE THE FOLLOWING FUNCTIONS:                         +\n" << endl;
+        cout << "+               1. TO WORK WITH THE CLASS OF GRAMINIVORE                       +\n" << endl;
+        cout << "+               2. TO WORK WITH THE CLASS OF HYPERCARNIVORE                    +\n" << endl;
+        cout << "+               3. TO WORK WITH THE CLASS OF MICROORGANISM               		+\n" << endl;
+        cout << "+               4. TO WORK WITH THE LINKED LIST                          		+\n" << endl;
+        cout << "+               5. TO QUANTITY STATISTICS                                		+\n" << endl;
+        cout << "+               0. TO EXIT THE PROGRAM                                   		+\n" << endl;
+        cout << "---------------------------------------------------------------------------------" <<endl;
         int panel;
-        cout << "\n\n\t Please Choose A Function:  ";
+        cout << "\n\n\t Please choose a function:  ";
         cin >> panel;
         switch (panel){
             case 1: {
                 BST tree;
                 tree.root = NULL;
                 tree.size = 0;
-                cout << "\n\t Welcome to the Graminivore class" << endl;
-                cout << "\n\t Enter Number Of Animal: ";
+                cout << "\n Welcome to the Graminivore class" << endl;
+                cout << " Enter number of animal: ";
                 int n;
                 cin >> n;
                 for(int i = 0; i < n; i++){
@@ -506,19 +557,18 @@ void MENU(){
                     cin >> al;
                     tree.root = tree.Insert(tree.root, al);
                 }
-                cout << "\n\t Now choose your work \n";
+                cout << " Now choose your work: ";
                 int work2;
                 char k, c;
                 do{
-                	cout << "\t\t          | THE GRAMINIVORE MENU |        " << endl;
-                    cout << "\t\t-------------------------------------------" << endl;
-                    cout << "\t\t+  1.  PRINT GRAMINIVORE WITH TREE LIST   +\n" << endl;
-                    cout << "\t\t+  2.            SORTED LIST  	  	  +\n" << endl;
-                    cout << "\t\t+  3.          ADD MORE ANIMAL		  +\n" << endl;
-                    cout << "\t\t+  4.           DELETE ANIMAL 		  +\n" << endl;
-                    cout << "\t\t+  5.         SEARCH FOR ANIMAL		  +\n" << endl;
-                    cout << "\t\t+ 	         -ESC. EXIT-	 	  +\n" << endl;
-                    cout << "\t\t-------------------------------------------" << endl;
+                    cout << "----------------------------------------------------" << endl;
+                    cout << "+ 		1.  PRINT GRAMINIVORE WITH TREE LIST 		+\n" << endl;
+                    cout << "+ 		2.  SORTED LIST  	  						+\n" << endl;
+                    cout << "+ 		3.  ADD MORE ANIMAL		 					+\n" << endl;
+                    cout << "+ 		4.  DELETE ANIMAL 							+\n" << endl;
+                    cout << "+ 		5.  SEARCH FOR ANIMAL				 		+\n" << endl;
+                    cout << "+ 			     -ESC. EXIT-	 					+\n" << endl;
+                    cout << "----------------------------------------------------" << endl;
                     cout << "\n\n\t Please choose a function:  ";
                     cin >> work2;
                     switch(work2){
@@ -526,254 +576,265 @@ void MENU(){
                             tree.PostOrder(tree.root);
                         }break;
                         case 2: {
-                            cout << "\t Here Is Sorted Tree \n" << endl;
+                            cout << " Here Is Sorted Tree " << endl;
                             tree.InOrder(tree.root);
                         }break;
                         case 3: {
                             Animal *all = new Grami;
-                            cout << "\t Enter Another Animal \n";
+                            cout << " Enter Another Animal: ";
                             cin >> all;
                             tree.Insert(tree.root, all);
                         }break;
                         case 4: {
-                            cout << "\t Delete Animal - Enter Animal ID:  ";
-                            int id;
+                        	int id;
+                        	string name;
+                            cout << " Delete Animal " << endl;
                             Animal *temp1 = new Grami;
-                            cin >> id;
+                            cin>>name;
                             temp1->setID(id);
-                            tree.Delete(tree.root, temp1);
-                            cout <<"\t\tDeleted Success !"<<endl;
+                            tree.root = tree.Delete(tree.root, temp1);
+                            cout <<"Done"<<endl;
                         }break;
                         case 5: {
-                            cout << "\t Search Animal By ID: ";
+                        	int id;
+                            cout << " Search Animal " <<endl;
                             Animal *temp2 = new Grami;
-                            int id;
                             cin >> id;
-                            temp2->setID(id);
+                            temp2->setID(id); 
                             cout << tree.SearchName(tree.root, temp2)->data;
                         }break;
                     }
-                        cout << "\n\tDo You Want To Exit ?(esc)"<<endl;
+                        cout << "\nDo you want to exit ?(esc)";
                         k = c;
                         c = getch();
                         
                 }while(c!=27);
+                // BST temp;
+                // temp = temp.size;
                 allSize[0] = tree.size;
             }break;
             case 2: {
                 BST tree;
                 tree.root = NULL;
                 tree.size = 0;
-                cout << "\n\t Welcome To The Hypercarnivore Class !" << endl;
-                cout << "\n\t Enter Number Of Animal: ";
+                cout << "\n Welcome to the HYPERCARNIVORE class" << endl;
+                cout << " Enter number of animal: ";
                 int n;
                 cin >> n;
                 for(int i = 0; i < n; i++){
                     al = new Hyper;
                     cin >> al;
-                    tree.root = tree.Insert(tree.root, al);
+                    tree.Insert(tree.root, al);
                 }
-                cout << "\n\t Now Choose Your Work \n";
+                cout << "Now choose your work: ";
                 int work3;
                 char k,c;
                 do{
-                    cout << "\t\t          | THE HYPERCARNIVORE MENU |        " << endl;
-                    cout << "\t\t----------------------------------------------" << endl;
-                    cout << "\t\t+  1.  PRINT HYPERCARNIVORE WITH TREE LIST   +\n" << endl;
-                    cout << "\t\t+  2.            SORTED LIST  	  	     +\n" << endl;
-                    cout << "\t\t+  3.          ADD MORE ANIMAL		     +\n" << endl;
-                    cout << "\t\t+  4.           DELETE ANIMAL 		     +\n" << endl;
-                    cout << "\t\t+  5.         SEARCH FOR ANIMAL		     +\n" << endl;
-                    cout << "\t\t+ 	         -ESC. EXIT-	 	     +\n" << endl;
-                    cout << "\t\t----------------------------------------------" << endl;
-                    cout << "\n\n\t Please Choose A Function:  ";
-					cin >> work3; 
+                    cout << "----------------------------------------------------" << endl;
+                    cout << "+ 		1.  PRINT HYPERCARNIVORE WITH TREE LIST 	+\n" << endl;
+                    cout << "+ 		2.  SORTED LIST  	  						+\n" << endl;
+                    cout << "+ 		3.  ADD MORE ANIMAL		 					+\n" << endl;
+                    cout << "+ 		4.  DELETE ANIMAL 							+\n" << endl;
+                    cout << "+ 		5.  SEARCH FOR ANIMAL				 		+\n" << endl;
+                    cout << "+ 			     -ESC. EXIT-	 					+\n" << endl;
+                    cout << "----------------------------------------------------" << endl;
+                    cout << "\n\n\t Please choose a function:  ";
+                    cin >> work3;
                     switch(work3){
                         case 1: {
                             tree.PostOrder(tree.root);
                         }break;
                         case 2: {
-                            cout << "\t Here Is Sorted Tree \n" << endl;
+                            cout << " Here Is Sorted List " << endl;
                             tree.InOrder(tree.root);
                         }break;
                         case 3: {
-                            Animal *all = new Hyper;
-                            cout << "\t\t Enter Another Animal \n";
-                            cin >> all;
+                        	Animal *all = new Hyper;
+                            cout << " Enter Another Animal: ";
+                            cin >>all;
                             tree.Insert(tree.root, all);
                         }break;
                         case 4: {
-                            cout << "\t Delete Animal - Enter Animal ID:  ";
-                            int id;
+                        	string name;
+                        	int id;
+                            cout << " Delete Animal " << endl;
                             Animal *temp1 = new Hyper;
-                            cin >> id;
+                            cin >> name;
                             temp1->setID(id);
-                            tree.Delete(tree.root, temp1);
-                            cout <<"\t\tDeleted Success !"<<endl;
+                            tree.root = tree.Delete(tree.root, temp1);
+                            cout <<"Done"<<endl;
                         }break;
                         case 5: {
-                            cout << "\t Search Animal By ID: ";
+                        	int id;
+                            cout << " Search Animal " << endl;
                             Animal *temp2 = new Hyper;
-                            int id;
                             cin >> id;
                             temp2->setID(id);
                             cout << tree.SearchName(tree.root, temp2)->data;
                         }break;
                     }
-                        cout << "\n\tDo You Want To Exit ?(esc)";
+                        cout << "\nDo you want to exit ?(esc)";
                         c = getch();
                         
-                }while(c!=27); 
+                }while(c!=27);
+                // BST temp;
+                // temp = temp.size; 
                 allSize[1] = tree.size;
             }break;
             case 3: {
                 BST tree;
                 tree.root = NULL;
                 tree.size = 0;
-                cout << "\n\t Welcome To The Microorganism Class !" << endl;
-                cout << "\n\t Enter Number Of Animal: ";
+                cout << "\n Welcome to the MICROORGANISM class" << endl;
+                cout << " Enter number of animal: ";
                 int n;
                 cin >> n;
                 for(int i = 0; i < n; i++){
-                    al = new Microo;
+                    al = new Hyper;
                     cin >> al;
-                    tree.root = tree.Insert(tree.root, al);
+                    tree.Insert(tree.root, al);
                 }
-                cout << "\n\t Now Choose Your Work \n";
-                int work4; 
+                cout << "Now choose your work: ";
+                int work4;
                 char k, c;
                 do{
-                    cout << "\t\t          | THE MICROORGANISM MENU |        " << endl;
-                    cout << "\t\t---------------------------------------------" << endl;
-                    cout << "\t\t+  1.  PRINT MICROORGANISM WITH TREE LIST   +\n" << endl;
-                    cout << "\t\t+  2.            SORTED LIST  	  	    +\n" << endl;
-                    cout << "\t\t+  3.          ADD MORE ANIMAL		    +\n" << endl;
-                    cout << "\t\t+  4.           DELETE ANIMAL 		    +\n" << endl;
-                    cout << "\t\t+  5.         SEARCH FOR ANIMAL		    +\n" << endl;
-                    cout << "\t\t+ 	         -ESC. EXIT-	 	    +\n" << endl;
-                    cout << "\t\t---------------------------------------------" << endl;
-                    cout << "\n\n\t Please Choose A Function:  \n";
-					cin >> work4;
+                    cout << "----------------------------------------------------" << endl;
+                    cout << "+ 		1.  PRINT MICROORGANISM WITH TREE LIST 		+\n" << endl;
+                    cout << "+ 		2.  SORTED LIST  	  						+\n" << endl;
+                    cout << "+ 		3.  ADD MORE ANIMAL		 					+\n" << endl;
+                    cout << "+ 		4.  DELETE ANIMAL 							+\n" << endl;
+                    cout << "+ 		5.  SEARCH FOR ANIMAL				 		+\n" << endl;
+                    cout << "+ 			     -ESC. EXIT-	 					+\n" << endl;
+                    cout << "----------------------------------------------------" << endl;
+                    cout << "\n\n\tPlease Choose A Function: ";
+                    cin >> work4;
                     switch(work4){
                         case 1: {
                             tree.PostOrder(tree.root);
                         }break;
                         case 2: {
-                            cout << "\t\t Here Is Sorted Tree \n" << endl;
+                            cout << " Here Is Sorted List " << endl;
                             tree.InOrder(tree.root);
                         }break;
                         case 3: {
-                            Animal *all = new Microo;
-                            cout << "\t Enter Another Animal \n";
-                            cin >> all;
+                        	Animal *all = new Microo;
+                            cout << " Enter Another Animal: ";
+                            cin >>all;
                             tree.Insert(tree.root, all);
                         }break;
                         case 4: {
-                            cout << "\t Delete Animal - Enter Animal ID:  ";
-                            int id;
+                        	string name;
+                        	int id;
+                            cout << " Delete Animal " << endl; 
                             Animal *temp1 = new Microo;
-                            cin >> id;
+                            cin >> name;
                             temp1->setID(id);
                             tree.root = tree.Delete(tree.root, temp1);
-                            cout <<"\t\tDeleted Success !"<<endl;
-                        }break;
+                            cout <<"Done"<<endl;
+						}break;
                         case 5: {
-                            cout << "\t Search  Animal By ID: ";
+                        	int id;
+                            cout << " Search Animal " << endl;
                             Animal *temp2 = new Microo;
-                            int id;
                             cin >> id;
                             temp2->setID(id);
                             cout << tree.SearchName(tree.root, temp2)->data;
                         }break;
                     }
-                    cout << "\n\tDo You Want To Exit ?(esc)"<<endl;
-                    k = c;
-                    c = getch();
+                        cout << "\nDo you want to exit ?(esc)";
+                        k = c;
+                        c = getch();
                         
                 }while(c!=27);
+                // BST temp;
+                // temp = temp.size;
                 allSize[2] = tree.size;
             }break;
             case 4: {
                 Animal *al;
                 SList list;
-                cout << "\n\t\t\t Welcome To The Linked List ! \n " << endl;
-                cout << "\t Now Choose Your Work \n";
+                cout << "\n Welcome To The Linked List " << endl;
+                cout << "\n Enter Number Of Animal: ";
+                int n;
+                cin >> n;
+                for(int i = 0; i < n; i++){
+                    cin >> al;
+                    list.addLast(al);
+                }
+                cout << "Now choose your work: ";
                 int work5;
                 char k, c;
-                do{ 
-                	cout << "\n\t\t                | THE LINKED LIST MENU |              " << endl;
-                    cout << "\t\t------------------------------------------------------" << endl;
-                    cout << "\t\t+  1. INSERT THE ANIMAL CLASS WITH THE LINKED LIST  +\n" << endl;
-                    cout << "\t\t+  2.   PRINT THE ANIMAL CLASS WITH LINKED LIST     +\n" << endl;
-                    cout << "\t\t+  3.                 SORTED LIST		    +\n" << endl;
-                    cout << "\t\t+  4.                DELETE ANIMAL 		    +\n" << endl;
-                    cout << "\t\t+  5.              SEARCH FOR ANIMAL		    +\n" << endl;
-                    cout << "\t\t+                     -ESC . EXIT-	 	    +" << endl;
-                    cout << "\t\t------------------------------------------------------" << endl;
-                    cout << "\n\n\t Please choose a function:  ";
-                    cin >> work5; 
+                do{
+                    cout << "------------------------------------------------------------" << endl;
+                    cout << "+ 		1.  INSERT THE ANIMAL CLASS WITH THE LINKED LIST  	+\n" << endl;
+                    cout << "+ 		2.  PRINT THE ANIMAL CLASS WITH LINKED LIST 	  	+\n" << endl;
+                    cout << "+ 		3.  SORTED LIST		 								+\n" << endl;
+                    cout << "+ 		4.  DELETE ANIMAL 									+\n" << endl;
+                    cout << "+ 		5.  SEARCH FOR ANIMAL				 				+\n" << endl;
+                    cout << "+ 			     -ESC. EXIT-	 							+\n" << endl;
+                    cout << "------------------------------------------------------------" << endl;
+                    cout << "\n\n\t Please choose a function: ";
+                    cin >> work5;
                     switch(work5){
                         case 1: {
                             Animal *al1 = new Grami;
-                            cout << "\t Enter: \n" << endl;
+                            cout << " Enter: " << endl;
                             cin >> al1;
                             list.addLast(al1);
                             
-                            al1 = new Hyper; 
-                            cout << "\t Enter: \n" << endl;
+                            al1 = new Hyper;
+                            cout << " Enter: " << endl;
                             cin >> al1;
                             list.addLast(al1);
                             
-                            al1 = new Microo; 
-                            cout << "\t Enter: \n" << endl;
+                            al1 = new Microo;
+                            cout << " Enter: " << endl;
                             cin >> al1;
-                            list.addLast(al1);
-                            
+                            list.addLast(al1); 
                         }break;
                         case 2: {
-                        	list.traverse();
+                            // list.head();
+                            // list.tail();
                         }break;
                         case 3: {
                             list.sort();
                             list.traverse();
                         }break;
                         case 4: {
-                        	list.removeName();
-                            cout << "\n\tDeleted Success!"<<endl;
+                            list.removeFirst();
+                            // list.previous();
+                            list.removeLast();
                         }break;
                         case 5: {
-                            Animal *al1 = new Animal;
-                            string name;
-                            fflush(stdin);
-                            getline(cin,name);
-                            al1->setName(name); 
-                            cout << list.searchName(al1)->data;
-                             
+                            Animal *al1 = new Grami;
+                            // list.searchName();
                         }break;
                     }
-                    cout << "\n\t Do you want to exit ?(esc) \n";
+                    cout << "\nDo you want to exit ?(esc)";
                     k = c;
                     c = getch();
                 }while(c!=27);
                 
             }break;
             case 5: {
-                cout << "\n\t\t Welcome To Quantity Statistics ! \n " << endl;
-                cout << "\t There is: "<<allSize[0]<<" Graminivore \n"<<endl;
-				cout << "\t There is: "<<allSize[1]<<" Hypecarrivore \n"<<endl;   
-				cout << "\t There is: "<<allSize[2]<<" Microorganism \n"<<endl;
-				cout << "\t Total:   "<< allSize[0] + allSize[1] + allSize[2] ;   	
+                // Animal *al;
+                cout << "\n Welcome To Quantity Statistics " << endl;
+                // tree.size;       	
             }break;
             default : {
-                cout << "\n\t You have chosen to Exit the program \n" << endl;
+                cout << "\n You have chosen to Exit the program" << endl;
             }break;
         }
-        cout << "\n\t Do you want to exit ?(esc)"<<endl;
+        cout << "\nDo you want to exit ?(esc)";
         k = c;
         c = getch();
-        delete al;
 	}while(c!=27);
 }
 int main(){
-    MENU();
+    BST list;
+    Animal *a = new Animal;
+    //a.setID(id);
+    //a.setName(name);
+    MENU(list.root, a);
+    delete a; 
 }
