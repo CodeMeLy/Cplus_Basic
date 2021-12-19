@@ -136,10 +136,6 @@ Node* BinaryTree::search (Node* root,Item v){
 bool BinaryTree::perfectBinaryTree(Node *root){
     return pow(2,height(root))-1 == size;
 }
-// Ho ten: Nguyen Hoang Phat
-// MSSV: 6151071082
-// Ngay sinh: 12/11/2002
-// Email: 6151071082@st.utc2.edu.vn
 int main(){
     BinaryTree b(5);
     b.insertleft(b.root, 3);

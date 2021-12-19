@@ -1,3 +1,4 @@
+//Nguyen Hoang Phat - 6151071082
 #include<iostream>
 using namespace std;
 class Fraction{
